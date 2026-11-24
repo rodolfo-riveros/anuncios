@@ -1,0 +1,9 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AdDetail from '../components/AdDetail';
+---
+<Layout title="Anuncio — Pregón">
+  <AdDetail client:only="react">
+    <div slot="fallback" class="wrap" style="padding:80px 32px;min-height:70vh"><p class="kicker">CARGANDO ANUNCIO…</p></div>
+  </AdDetail>
+</Layout>

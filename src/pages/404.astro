@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { url } from '../lib/format';
+---
+<Layout title="Página no encontrada — Pregón">
+  <section class="wrap" style="padding-top:80px;padding-bottom:96px;display:flex;flex-direction:column;gap:24px;align-items:flex-start">
+    <span class="stamp" style="font-size:140px;font-weight:900;line-height:.85;letter-spacing:-0.05em;background:#FFD400;border:3px solid #111;box-shadow:8px 8px 0 #111;padding:10px 24px">404</span>
+    <h1 style="font-size:48px;font-weight:900;letter-spacing:-0.03em">Este pregón se perdió.</h1>
+    <p style="font-size:18px">La página que buscas no existe o fue retirada.</p>
+    <a href={url('/')} class="btn-y">Ver anuncios</a>
+  </section>
+</Layout>

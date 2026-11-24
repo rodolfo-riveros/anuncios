@@ -1,0 +1,93 @@
+---
+import '../styles/global.css';
+import Icon from '../components/Icon';
+import HeaderActions from '../components/HeaderActions';
+import Toaster from '../components/Toaster';
+import { url } from '../lib/format';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** 'explorar' | 'panel' | 'publicar' */
+  active?: string;
+  minimal?: boolean;
+  /** Oculta la navegación pública (zona de administración) */
+  admin?: boolean;
+}
+const {
+  title = 'Pregón — Clasificados del Valle',
+  description = 'Lo que se vende, se busca y se ofrece en el Valle Sagrado. Publica tu anuncio por S/ 5 durante 30 días.',
+  active = '',
+  minimal = false,
+  admin = false,
+} = Astro.props;
+const cur = (k: string) => (active === k ? 'page' : undefined);
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#111111" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a href="#main" class="sr">Saltar al contenido</a>
+    <header class="hdr">
+      <div class="wrap hdr-in">
+        <a href={url('/')} class="logo" aria-label="Pregón, inicio">
+          <span class="logo-mark">P!</span>
+          <span class="logo-txt">PREGÓN</span>
+        </a>
+        {!minimal && (
+          <nav class="navl" aria-label="Principal">
+            <a href={url('/')} aria-current={cur('explorar')}>Explorar</a>
+            <a href={url('/#como')}>Cómo funciona</a>
+            <a href={url('/anunciate')} aria-current={cur('anunciate')}>Anúnciate</a>
+          </nav>
+        )}
+        <div class="spacer"></div>
+        <slot name="header-right">
+          <HeaderActions client:only="react" />
+          <a href={url('/anunciate')} class="btn-y wobble hide-m">
+            <Icon name="plus" size={20} stroke={3} />
+            Anúnciate · S/ 5
+          </a>
+        </slot>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    {!minimal && (
+      <footer class="ftr">
+        <div class="wrap ftr-in">
+          <span style="font-weight:900;font-size:22px">PREGÓN</span>
+          <a href={url('/#como')}>Cómo funciona</a>
+          <a href={url('/seguridad')}>Consejos de seguridad</a>
+          <a href={url('/seguridad#terminos')}>Términos</a>
+          <a href={url('/anunciate')}>Contacto</a>
+          <span style="flex:1 1 20px"></span>
+          <span class="mono" style="font-size:13px">Hecho en Urubamba, Cusco</span>
+          <a href={url('/admin')} class="mono" style="font-size:12px;color:#777">Admin</a>
+        </div>
+      </footer>
+    )}
+
+    {!admin && (<nav class="mnav" aria-label="Navegación">
+      <a href={url('/')} aria-current={cur('explorar')}><Icon name="home" size={24} />Inicio</a>
+      <a href={url('/?buscar=1')}><Icon name="search" size={24} />Buscar</a>
+      <a href={url('/anunciate')} class="fab" aria-label="Anunciar con nosotros"><Icon name="plus" size={30} stroke={3} /></a>
+      <a href={url('/guardados')} aria-current={cur('guardados')}><Icon name="heart" size={24} />Guardados</a>
+      <a href={url('/guardados?s=alertas')}><Icon name="bell" size={24} />Alertas</a>
+    </nav>)}
+
+    <Toaster client:only="react" />
+  </body>
+</html>

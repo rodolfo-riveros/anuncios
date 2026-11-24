@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Explore from '../components/Explore';
+import { url } from '../lib/format';
+---
+<Layout active="explorar">
+  <Explore client:only="react">
+    <div slot="fallback" class="wrap" style="padding:80px 32px;min-height:60vh">
+      <p class="kicker">CARGANDO ANUNCIOS…</p>
+    </div>
+  </Explore>
+
+  <section id="como" style="background:#111;color:#fff;border-top:3px solid #111;scroll-margin-top:80px">
+    <div class="wrap" style="padding-top:64px;padding-bottom:64px">
+      <h2 style="margin:0 0 36px;font-size:clamp(36px,4vw,56px);font-weight:900;letter-spacing:-0.03em;line-height:1">
+        Anúnciate en 3 pasos. <span style="color:#FFD400">Sin comisiones.</span>
+      </h2>
+      <div class="steps">
+        <div class="step">
+          <span class="num">01</span>
+          <h3>Envíanos tu anuncio</h3>
+          <p>Llena el formulario o escríbenos por WhatsApp con tus fotos, precio y datos de contacto.</p>
+        </div>
+        <div class="step">
+          <span class="num">02</span>
+          <h3>Coordinamos contigo</h3>
+          <p>Te escribimos para confirmar los detalles y la ubicación en el mapa.</p>
+        </div>
+        <div class="step y">
+          <span class="num">03</span>
+          <h3>Pagas S/ 5 y lo publicamos</h3>
+          <p>Con Yape, Plin o efectivo. Tu anuncio sale en menos de 2 horas y queda 30 días visible.</p>
+        </div>
+      </div>
+      <div style="margin-top:40px;display:flex;flex-wrap:wrap;gap:16px;align-items:center">
+        <a href={url('/anunciate')} class="btn-y">Quiero anunciar</a>
+        <span class="mono" style="font-size:14px;color:#d6d6d6">¿Mascota perdida? Publicar es gratis.</span>
+      </div>
+    </div>
+  </section>
+</Layout>

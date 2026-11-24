@@ -1,0 +1,9 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Anunciate from '../components/Anunciate';
+---
+<Layout title="Anúnciate — Pregón" active="anunciate" description="Publica tu anuncio en Pregón por S/ 5 durante 30 días. Envíanos tu solicitud y lo publicamos en menos de 2 horas.">
+  <Anunciate client:only="react">
+    <div slot="fallback" class="wrap" style="padding:80px 32px;min-height:70vh"><p class="kicker">CARGANDO…</p></div>
+  </Anunciate>
+</Layout>

@@ -1,0 +1,10 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Admin from '../components/admin/Admin';
+---
+<Layout title="Administración — Pregón" minimal admin>
+  <Fragment slot="header-right"><span id="admin-hdr"></span></Fragment>
+  <Admin client:only="react">
+    <div slot="fallback" class="wrap" style="padding:80px 32px;min-height:70vh"><p class="kicker">CARGANDO…</p></div>
+  </Admin>
+</Layout>

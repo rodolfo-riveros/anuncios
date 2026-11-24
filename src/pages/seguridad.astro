@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { url } from '../lib/format';
+const tips = [
+  ['Visita antes de pagar', 'Mira el terreno, el vehículo o el cuarto en persona. Ve acompañado y de día.'],
+  ['Nunca envíes adelantos', 'Desconfía si te piden un Yape o Plin "para separar". Paga solo al recibir.'],
+  ['Revisa los documentos', 'Pide la partida registral en SUNARP, la tarjeta de propiedad o el contrato original.'],
+  ['Habla por WhatsApp', 'Mantén la conversación en un solo lugar para tener constancia de lo acordado.'],
+  ['Si suena demasiado bueno…', 'Precios muy por debajo del mercado suelen ser estafas. Repórtalo con un clic.'],
+  ['Mascotas perdidas', 'No pagues recompensas por adelantado. Pide una foto o video actual del animal.'],
+];
+---
+<Layout title="Consejos de seguridad — Pregón">
+  <section class="wrap" style="padding-top:48px;padding-bottom:64px;display:flex;flex-direction:column;gap:32px">
+    <p class="kicker">TRATA SEGURO</p>
+    <h1 class="h-xl rise" style="max-width:16ch">Compra y vende sin sustos.</h1>
+    <div class="steps">
+      {tips.map(([t, d], i) => (
+        <div class="box" style={i === 1 ? 'background:#FFD400' : ''}>
+          <span class="mono" style="font-size:40px;font-weight:700;line-height:1">{String(i + 1).padStart(2, '0')}</span>
+          <h2 style="font-size:24px">{t}</h2>
+          <p style="font-size:17px;line-height:1.45">{d}</p>
+        </div>
+      ))}
+    </div>
+    <section id="terminos" class="box" style="scroll-margin-top:90px">
+      <h2>Términos de uso</h2>
+      <p style="font-size:16px;line-height:1.55;max-width:75ch">
+        Pregón es un tablón de anuncios: no participamos en las ventas ni cobramos comisión. Cada anunciante es responsable
+        de lo que publica. Retiramos anuncios reportados que sean engañosos, ofensivos o ilegales. El pago de S/ 5 cubre
+        30 días de publicación y no es reembolsable una vez publicado el anuncio.
+      </p>
+    </section>
+    <a href={url('/')} class="btn-y" style="align-self:flex-start">Volver a los anuncios</a>
+  </section>
+</Layout>
